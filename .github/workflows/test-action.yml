@@ -17,10 +17,23 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: ./
+      - uses: sksat/b2-upload-action@v0.1.2
         with:
           key_id: ${{ secrets.B2_KEY_ID }}
           key: ${{ secrets.B2_KEY }}
           bucket: ${{ secrets.B2_BUCKET }}
           src: README.md
           dest: README.md
+
+      - uses: ./
+        with:
+          key_id: ${{ secrets.B2_KEY_ID }}
+          key: ${{ secrets.B2_KEY }}
+          bucket: ${{ secrets.B2_BUCKET }}
+          file_name: README.md
+          local_name: README-from-b2.md
+
+      - name: check
+        run: |
+          ls
+          diff README.md README-from-b2.md
