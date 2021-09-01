@@ -1,5 +1,5 @@
-name: 'Upload file to Backblaze B2'
-description: 'upload file to Backblaze B2'
+name: 'Download file from Backblaze B2'
+description: 'Download file from Backblaze B2'
 author: 'sksat <sksat@sksat.net>'
 
 inputs:
@@ -12,11 +12,13 @@ inputs:
   bucket:
     description: bucket
     required: true
-  src:
+  file_name:
     description: source file or directory
     required: true
-  dest:
-    description: destination
+  file_id:
+    description: file id (not implemented)
+  local_name:
+    description: local file name
     required: true
 
 runs:
@@ -26,5 +28,5 @@ runs:
     - ${{ inputs.key_id }}
     - ${{ inputs.key }}
     - ${{ inputs.bucket }}
-    - ${{ inputs.src }}
-    - ${{ inputs.dest }}
+    - ${{ inputs.file_name }}
+    - ${{ inputs.local_name }}
